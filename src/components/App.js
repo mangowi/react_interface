@@ -4,7 +4,7 @@ import AddApointments from './AddApointments';
 import SearchApointments from './SearchApointments';
 import ListApointments from './ListApointments';
 
-
+import {without} from 'lodash';
 
 class App extends Component {
   constructor(){
@@ -15,8 +15,20 @@ class App extends Component {
       myAppointmenst: [],
       lastIndex: 0
     };
+
+    this.deleteApointment = this.deleteApointment.bind(this); 
   }
   
+  deleteApointment(apt){
+    let tempApts = this.state.myAppointmenst;
+    tempApts = without(tempApts, apt); // using lodash to filter apointment that has no this apt we pass
+  
+  
+    this.setState({
+      myAppointmenst: tempApts
+    })
+  }
+
    componentDidMount(){
      fetch('./data.json') // we are using fetch but can use jquery get or post or get
         .then(response => response.json()) // specifying response is coming as json format
@@ -48,7 +60,9 @@ class App extends Component {
                 {this.state.myName}
                 <AddApointments />
                 <SearchApointments />
-                <ListApointments appointments={this.state.myAppointmenst} />
+                <ListApointments appointments={this.state.myAppointmenst}
+                deleteApointment = {this.deleteApointment}
+                />
             </div>
           </div>
         </div>

@@ -18,7 +18,9 @@ class ListApointments extends Component{
                             // we need paranthis because we add html
                             <div className="pet-item col media py-3" key={item.aptId}>
                             <div className="mr-3">
-                            <button className="pet-delete btn btn-sm btn-danger">
+                            <button className="pet-delete btn btn-sm btn-danger"
+                            onClick={(e)=> this.props.deleteApointment(item)}
+                            >
                             <FaTimes/>
                             </button>
                             </div>
