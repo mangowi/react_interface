@@ -11,8 +11,9 @@ class App extends Component {
     super();//Allows to get information from the parent component
     this.state = {
       // Initializing the object
-      myName : 'Daniel Mangowi',
-      myAppointmenst: []
+      //myName : 'Daniel Mangowi',
+      myAppointmenst: [],
+      lastIndex: 0
     };
   }
   
@@ -22,6 +23,8 @@ class App extends Component {
         .then(result => {
           // processing the result in a variable and go through each of the element on the file
           const apts = result.map(item=>{
+            item.aptId= this.state.lastIndex;
+            this.setState({lastIndex: this.state.lastIndex + 1 });
             return item;
           })
 
