@@ -50,13 +50,13 @@ class SearchApointments extends Component{
                     <div role="separator" className="dropdown-divider" />
                     <button className={
                         'sort-by dropdown-item' + 
-                        (this.props.orderBy ==='asc' ? 'active': '')
+                        (this.props.orderDir ==='asc' ? 'active': '')
                     } href="#">
                       Asc
                     </button>
                     <button className={
                         'sort-by dropdown-item' + 
-                        (this.props.orderBy ==='desc' ? 'active': '')
+                        (this.props.orderDir ==='desc' ? 'active': '')
                     } href="#">
                       Desc
                     </button>
