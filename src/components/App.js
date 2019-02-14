@@ -13,11 +13,12 @@ class App extends Component {
       // Initializing the object
       //myName : 'Daniel Mangowi',
       myAppointmenst: [],
-      formDisplay: true,
+      formDisplay: false,
       lastIndex: 0
     };
 
     this.deleteApointment = this.deleteApointment.bind(this); 
+    this.toggleFormDisplayD = this.toggleFormDisplayD.bind(this);
   }
   
   deleteApointment(apt){
@@ -27,6 +28,12 @@ class App extends Component {
   
     this.setState({
       myAppointmenst: tempApts
+    })
+  }
+
+  toggleFormDisplayD(){
+    this.setState({
+      formDisplay: !this.state.formDisplay
     })
   }
 
@@ -61,6 +68,7 @@ class App extends Component {
                 {this.state.myName}
                 <AddApointments
                 formDisplay={this.state.formDisplay}
+                toggleFormDisplay= {this.toggleFormDisplayD}
                 />
                 <SearchApointments />
                 <ListApointments appointments={this.state.myAppointmenst}
