@@ -7,6 +7,14 @@ import ListApointments from './ListApointments';
 
 
 class App extends Component {
+  constructor(){
+    super();//Allows to get information from the parent component
+    this.state = {
+      // Initializing the object
+      myName : 'Daniel Mangowi'
+    };
+  }
+
   render() {
     return (
       <main className="page bg-white" id="petratings">
@@ -14,6 +22,7 @@ class App extends Component {
         <div className="row">
           <div className="col-md-12 bg-white">
             <div className="container">
+                {this.state.myName}
                 <AddApointments />
                 <SearchApointments />
                 <ListApointments />
