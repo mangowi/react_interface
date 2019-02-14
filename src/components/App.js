@@ -4,7 +4,7 @@ import AddApointments from './AddApointments';
 import SearchApointments from './SearchApointments';
 import ListApointments from './ListApointments';
 
-import {without} from 'lodash';
+import {without, findIndex} from 'lodash';
 
 class App extends Component {
   constructor(){
@@ -25,11 +25,23 @@ class App extends Component {
     this.addAppointment = this.addAppointment.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
     this.searchApts = this.searchApts.bind(this);
+    this.updatePateInfo = this.updatePateInfo.bind(this);
 
 
 
   }
   
+  updatePateInfo(name, value, id){
+      let tempApts = this.state.myAppointmenst;
+      let aptIndex = findIndex(this.state.myAppointmenst, {
+        aptId: id
+      });
+      // Modify the record
+      tempApts[aptIndex][name] = value;
+      this.setState({
+        myAppointmenst: tempApts
+      })
+  }
   searchApts(query){
     this.setState({
       queryText: query
@@ -144,6 +156,7 @@ class App extends Component {
                 />
                 <ListApointments appointments={filteredApts}
                 deleteApointment = {this.deleteApointment}
+                updateInfo= {this.updatePateInfo}
                 />
             </div>
           </div>
