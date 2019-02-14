@@ -16,6 +16,8 @@ class AddApointments extends Component{
         // Need to bind
         // this keyword will refer tp this component
         this.handleChange = this.handleChange.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+
     }
 
 
@@ -28,6 +30,29 @@ class AddApointments extends Component{
         this.setState({
             [name]: value
         })
+    }
+
+    handleAdd(e){
+        e.preventDefault();
+
+        let tempApt= {
+            petName: this.state.petName,
+            ownerName: this.state.ownerName,
+            aptDate: this.state.aptDate + ' ' + this.state.aptTime,
+            aptNotes: this.state.aptNotes
+        };
+
+
+        this.props.addAppointment(tempApt);
+
+        this.state = {
+            petName: '',
+           ownerName: '',
+           aptNotes: '',
+           aptDate: '',
+           aptTime:''
+       }
+       this.props.toggleFormDisplay();
     }
 
     render(){
@@ -43,7 +68,9 @@ class AddApointments extends Component{
             </div>
   
             <div className="card-body">
-              <form id="aptForm" noValidate>
+              <form id="aptForm" noValidate
+              onSubmit={this.handleAdd}//Handle add method
+              >
                 <div className="form-group form-row">
                   <label
                     className="col-md-2 col-form-label text-md-right"

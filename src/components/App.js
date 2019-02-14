@@ -19,8 +19,22 @@ class App extends Component {
 
     this.deleteApointment = this.deleteApointment.bind(this); 
     this.toggleFormDisplayD = this.toggleFormDisplayD.bind(this);
+    this.addAppointment = this.addAppointment.bind(this);
+
   }
   
+
+
+  addAppointment(apt){
+    let tempApts = this.state.myAppointmenst;
+    apt.aptId = this.state.lastIndex;
+    tempApts.unshift(apt);
+    this.setState({
+      myAppointmenst: tempApts,
+      lastIndex: this.lastIndex +1
+    })
+  }
+
   deleteApointment(apt){
     let tempApts = this.state.myAppointmenst;
     tempApts = without(tempApts, apt); // using lodash to filter apointment that has no this apt we pass
@@ -69,6 +83,7 @@ class App extends Component {
                 <AddApointments
                 formDisplay={this.state.formDisplay}
                 toggleFormDisplay= {this.toggleFormDisplayD}
+                addAppointment={this.addAppointment}
                 />
                 <SearchApointments />
                 <ListApointments appointments={this.state.myAppointmenst}
