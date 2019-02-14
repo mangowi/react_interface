@@ -13,6 +13,7 @@ class App extends Component {
       // Initializing the object
       //myName : 'Daniel Mangowi',
       myAppointmenst: [],
+      formDisplay: true,
       lastIndex: 0
     };
 
@@ -58,7 +59,9 @@ class App extends Component {
           <div className="col-md-12 bg-white">
             <div className="container">
                 {this.state.myName}
-                <AddApointments />
+                <AddApointments
+                formDisplay={this.state.formDisplay}
+                />
                 <SearchApointments />
                 <ListApointments appointments={this.state.myAppointmenst}
                 deleteApointment = {this.deleteApointment}
