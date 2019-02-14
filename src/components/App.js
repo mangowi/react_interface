@@ -11,14 +11,42 @@ class App extends Component {
     super();//Allows to get information from the parent component
     this.state = {
       // Initializing the object
-      myName : 'Daniel Mangowi'
+      myName : 'Daniel Mangowi',
+      myAppointmenst: []
     };
   }
+  
+   componentDidMount(){
+     fetch('./data.json') // we are using fetch but can use jquery get or post or get
+        .then(response => response.json()) // specifying response is coming as json format
+        .then(result => {
+          // processing the result in a variable and go through each of the element on the file
+          const apts = result.map(item=>{
+            return item;
+          })
 
+          // Always create a variable before setting up data to the state
+          this.setState({
+            myAppointmenst: apts
+          })
+        })
+
+        
+   }
   render() {
+
+    // temp variable
+    const listItems = this.state.myAppointmenst.map(item=>(
+      <div>
+          <div>{item.petName}</div>
+          <div>{item.ownerName}</div>
+        </div>
+
+    ));
     return (
       <main className="page bg-white" id="petratings">
       <div className="container">
+      {listItems}
         <div className="row">
           <div className="col-md-12 bg-white">
             <div className="container">
