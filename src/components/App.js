@@ -14,8 +14,8 @@ class App extends Component {
       //myName : 'Daniel Mangowi',
       myAppointmenst: [],
       formDisplay: false,
-      orderBy: 'petName',
-      orderDir:'asc',
+      orderBy: 'ownerName',
+      orderDir:'desc',
       lastIndex: 0
     };
 
@@ -105,7 +105,10 @@ class App extends Component {
                 toggleFormDisplay= {this.toggleFormDisplayD}
                 addAppointment={this.addAppointment}
                 />
-                <SearchApointments />
+                <SearchApointments
+                 orderBy={this.state.orderBy}
+                 orderDir={this.state.orderDir}
+                />
                 <ListApointments appointments={filteredApts}
                 deleteApointment = {this.deleteApointment}
                 />
