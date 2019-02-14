@@ -35,25 +35,17 @@ class App extends Component {
    }
   render() {
 
-    // temp variable
-    const listItems = this.state.myAppointmenst.map(item=>(
-      <div>
-          <div>{item.petName}</div>
-          <div>{item.ownerName}</div>
-        </div>
-
-    ));
+    
     return (
       <main className="page bg-white" id="petratings">
       <div className="container">
-      {listItems}
         <div className="row">
           <div className="col-md-12 bg-white">
             <div className="container">
                 {this.state.myName}
                 <AddApointments />
                 <SearchApointments />
-                <ListApointments />
+                <ListApointments appointments={this.state.myAppointmenst} />
             </div>
           </div>
         </div>
