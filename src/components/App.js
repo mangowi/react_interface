@@ -16,7 +16,7 @@ class App extends Component {
       formDisplay: false,
       orderBy: 'ownerName',
       orderDir:'desc',
-      queryText: 'Bailey',
+      queryText: '',
       lastIndex: 0
     };
 
@@ -24,10 +24,18 @@ class App extends Component {
     this.toggleFormDisplayD = this.toggleFormDisplayD.bind(this);
     this.addAppointment = this.addAppointment.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
+    this.searchApts = this.searchApts.bind(this);
+
 
 
   }
   
+  searchApts(query){
+    this.setState({
+      queryText: query
+    })
+  }
+
   changeOrder(order, dir){
     this.setState({
       orderBy: order,
@@ -132,6 +140,7 @@ class App extends Component {
                  orderBy={this.state.orderBy}
                  orderDir={this.state.orderDir}
                  changeOrder={this.changeOrder}
+                 searchApts={this.searchApts}// we can call local function any name as we want
                 />
                 <ListApointments appointments={filteredApts}
                 deleteApointment = {this.deleteApointment}
